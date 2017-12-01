@@ -2,10 +2,10 @@
 #define BEATMAP_H
 
 
-class Beatmap
+class QBeatmap
 {
 public:
-    Beatmap();
+    QBeatmap();
 };
 
 #endif // BEATMAP_H

@@ -7,7 +7,7 @@ class QBeatmapEngine : public QObject
 {
     Q_OBJECT
 public:
-    explicit BeatmapEngine(QObject *parent = nullptr);
+    QBeatmapEngine(QObject *parent = nullptr);
 
 signals:
 

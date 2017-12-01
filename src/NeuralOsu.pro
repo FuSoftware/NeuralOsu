@@ -30,17 +30,31 @@ SOURCES += \
     neural/network.cpp \
     neural/qneuralnetwork.cpp \
     neural/neuraltests.cpp \
-    osu/data/beatmap.cpp \
-    osu/data/osufile.cpp \
-    osu/engine/beatmapengine.cpp \
-    osu/interface/qbeatmaplist.cpp
+    osu/interface/qbeatmaplist.cpp \
+    osu/engine/qbeatmapscanner.cpp \
+    osu/data/qbeatmap.cpp \
+    osu/data/qosufile.cpp \
+    osu/engine/qbeatmapengine.cpp \
+    osu/data/items/timingpoint.cpp \
+    osu/data/items/hitobject.cpp \
+    osu/data/items/event.cpp \
+    osu/osutests.cpp \
+    osu/data/items/slider.cpp \
+    osu/data/items/spinner.cpp
 
 HEADERS += \
         widget.h \
     neural/network.h \
     neural/qneuralnetwork.h \
     neural/neuraltests.h \
-    osu/data/beatmap.h \
-    osu/data/osufile.h \
-    osu/engine/beatmapengine.h \
-    osu/interface/qbeatmaplist.h
+    osu/interface/qbeatmaplist.h \
+    osu/engine/qbeatmapscanner.h \
+    osu/data/qbeatmap.h \
+    osu/data/qosufile.h \
+    osu/engine/qbeatmapengine.h \
+    osu/data/items/timingpoint.h \
+    osu/data/items/hitobject.h \
+    osu/data/items/event.h \
+    osu/osutests.h \
+    osu/data/items/slider.h \
+    osu/data/items/spinner.h
