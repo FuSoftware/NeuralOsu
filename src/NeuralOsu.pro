@@ -29,10 +29,18 @@ SOURCES += \
         widget.cpp \
     neural/network.cpp \
     neural/qneuralnetwork.cpp \
-    neural/neuraltests.cpp
+    neural/neuraltests.cpp \
+    osu/data/beatmap.cpp \
+    osu/data/osufile.cpp \
+    osu/engine/beatmapengine.cpp \
+    osu/interface/qbeatmaplist.cpp
 
 HEADERS += \
         widget.h \
     neural/network.h \
     neural/qneuralnetwork.h \
-    neural/neuraltests.h
+    neural/neuraltests.h \
+    osu/data/beatmap.h \
+    osu/data/osufile.h \
+    osu/engine/beatmapengine.h \
+    osu/interface/qbeatmaplist.h
