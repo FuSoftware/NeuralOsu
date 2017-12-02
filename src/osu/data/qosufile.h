@@ -12,8 +12,6 @@
 #include <QStringList>
 #include <QDebug>
 
-#include "qbeatmap.h"
-
 #include "items/event.h"
 #include "items/timingpoint.h"
 #include "items/hitobject.h"
@@ -22,15 +20,18 @@
 
 #include <QRegularExpression>
 
+class QBeatmap;
+
 class QOsuFile
 {
 public:
+    QOsuFile(QString path, QBeatmap* parent = 0);
     QOsuFile(QFileInfo info, QBeatmap* parent = 0);
 
     void save();
     void load(QFileInfo info);
 
-    QString getData(QString category, QString variable);
+    QString getData(QString category, QString variable, QString def = "");
 
     QString getMusicFile();
 

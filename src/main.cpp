@@ -10,14 +10,10 @@ int main(int argc, char *argv[])
 {
     srand (static_cast <unsigned> (time(0)));
 
-    /*
-    QApplication a(argc, argv);
-    Widget w;
-    w.show();
+    QApplication a(argc, argv);    
+
+    //OsuTests::testOsuFile("/home/fuguet/osu/Songs/21321 Hatsune Miku - Nisoku Hokou/Hatsune Miku - Nisoku Hokou (banvi) [Garven's Easy].osu");
+    OsuTests::testBeatmapScanner();
+
     return a.exec();
-    */
-
-    OsuTests::testOsuFile("/home/fuguet/osu/Songs/21321 Hatsune Miku - Nisoku Hokou/Hatsune Miku - Nisoku Hokou (banvi) [Garven's Easy].osu");
-
-    return 0;
 }

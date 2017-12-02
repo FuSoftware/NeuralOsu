@@ -1,6 +1,12 @@
 #include "qosufile.h"
+#include "qbeatmap.h"
 
 QStringList QOsuFile::sections = {"General","Editor","Metadata","Difficulty","Events","TimingPoints","Colours","Hitobjects"};
+
+QOsuFile::QOsuFile(QString path, QBeatmap* parent) : QOsuFile(QFileInfo(path), parent)
+{
+
+}
 
 QOsuFile::QOsuFile(QFileInfo info, QBeatmap *parent)
 {
@@ -96,7 +102,7 @@ void QOsuFile::load(QFileInfo info)
                 else
                 {
                     //Metadata
-                    re.setPattern("(.+): (.+)\\s");
+                    re.setPattern("(.+):(.+)\\s");
                     QRegularExpressionMatchIterator it = re.globalMatch(sections[i]);
                     this->metadata[title] = QHash<QString, QString>();
 
@@ -111,9 +117,13 @@ void QOsuFile::load(QFileInfo info)
             }
         }
     }
+    else
+    {
+        qDebug() << "Error parsing" << fileInfo.absoluteFilePath() << "(doesn't exist)";
+    }
 }
 
-QString QOsuFile::getData(QString category, QString variable)
+QString QOsuFile::getData(QString category, QString variable, QString def)
 {
     if(this->metadata.contains(category))
     {
@@ -123,7 +133,7 @@ QString QOsuFile::getData(QString category, QString variable)
         }
     }
 
-    return QString();
+    return def;
 
 }
 
