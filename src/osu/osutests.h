@@ -18,8 +18,8 @@ public:
     OsuTests();
 
     static void testOsuFile(QString file);
-    static void testBeatmapFolder();
-    static void testBeatmapScanner();
+    static void testBeatmapFolder(QString folder = "E:/Program Files (x86)/osu!/Songs");
+    static void testBeatmapScanner(QString folder = "E:/Program Files (x86)/osu!/Songs");
 
 };
 

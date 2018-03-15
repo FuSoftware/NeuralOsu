@@ -10,10 +10,10 @@ class Slider : public HitObject
 {
 public:
     Slider(QString data);
-    Slider(QStringList data);
+
+    void load(QString data);
 
     static bool isSlider(QString data);
-    static bool isSlider(QStringList data);
 
     enum SliderType
     {

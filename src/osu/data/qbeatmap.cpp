@@ -30,19 +30,17 @@ void QBeatmap::load(QDir folder)
         this->maps.push_back(f);
     }
 
-    //Beatmap's metadata
-    QRegularExpression re("([0-9]+) (.+) - (.+)");
-    QRegularExpressionMatch match = re.match(this->folder.dirName());
-    if(match.hasMatch())
+    if(!this->maps.empty())
     {
-        //Standard name
-        this->id = match.captured(1).toInt();
-        this->artist = match.captured(2);
-        this->song = match.captured(3);
+        this->id = this->maps[0]->getBeatmapID();
+        this->artist = this->maps[0]->getArtist();
+        this->song = this->maps[0]->getTitle();
     }
     else
     {
-        this->song = this->folder.dirName();
+        this->id = -1;
+        this->artist = "Unknown Artist";
+        this->song = "Unknown Title";
     }
 
     this->valid = true;

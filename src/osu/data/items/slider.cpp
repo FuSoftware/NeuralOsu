@@ -1,13 +1,15 @@
 #include "slider.h"
 
-Slider::Slider(QString data) : Slider(data.split(","))
+Slider::Slider(QString data) : HitObject(data)
 {
-
+    this->load(data);
 }
 
-Slider::Slider(QStringList data) : HitObject(data)
+void Slider::load(QString data)
 {
-    QStringList path = data[5].split("|");
+    QStringList d = data.split(",");
+
+    QStringList path = d[5].split("|");
 
     if(path[0] == "L")
         this->slider_type = Slider::LINEAR;
@@ -22,31 +24,27 @@ Slider::Slider(QStringList data) : HitObject(data)
         this->curve_points.push_back(QPoint(point[0].toInt(), point[1].toInt()));
     }
 
-    this->repeat = data[6].toInt();
-    this->pixel_length = data[7].toFloat();
+    this->repeat = d[6].toInt();
+    this->pixel_length = d[7].toFloat();
 
-    if(data.size() >= 9)
+    if(d.size() >= 9)
     {
-        QStringList edgeHitSoundList = data[8].split("|");
+        QStringList edgeHitSoundList = d[8].split("|");
 
         for(int i=0;i<edgeHitSoundList.length();i++)
             this->edge_hit_sounds.push_back(edgeHitSoundList[i].toInt());
     }
 
     //TODO : Edge Additions
-
 }
 
 bool Slider::isSlider(QString data)
 {
-    return Slider::isSlider(data.split(","));
-}
+    QStringList d = data.split(",");
 
-bool Slider::isSlider(QStringList data)
-{
-    if(data.size() >= 6)
+    if(d.size() >= 6)
     {
-        return data[5].split("|").size()>1;
+        return d[5].split("|").size()>1;
     }
     else
     {

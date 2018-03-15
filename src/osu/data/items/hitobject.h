@@ -9,8 +9,9 @@ class HitObject
 public:
     HitObject(int x, int y, int time, int type, int hitSound, QString extras);
     HitObject(QString data);
-    HitObject(QStringList data);
 
+    void load(QString s);
+    void load(int x, int y, int time, int type, int hitSound, QString extras);
     void setExtras(QString extras);
 
     bool isType(int mask);

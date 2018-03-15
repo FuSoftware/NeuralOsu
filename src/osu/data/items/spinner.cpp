@@ -1,25 +1,18 @@
 #include "spinner.h"
 
-Spinner::Spinner(QString data) : Spinner(data.split(","))
+Spinner::Spinner(QString data) : HitObject(data)
 {
-
-}
-
-Spinner::Spinner(QStringList data) : HitObject(data)
-{
-    this->endTime = data[5].toInt();
+    QStringList d = data.split(",");
+    this->endTime = d[5].toInt();
 }
 
 bool Spinner::isSpinner(QString data)
 {
-    return Spinner::isSpinner(data.split(","));
-}
+    QStringList d = data.split(",");
 
-bool Spinner::isSpinner(QStringList data)
-{
-    if(data.size() >= 6)
+    if(d.size() >= 6)
     {
-        return data[5].split(":").size() == 1;
+        return d[5].split(":").size() == 1;
     }
     else
     {

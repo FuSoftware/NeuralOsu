@@ -2,6 +2,28 @@
 
 HitObject::HitObject(int x, int y, int time, int type, int hitSound, QString extras)
 {
+    this->load(x,y,time,type,hitSound,extras);
+}
+
+HitObject::HitObject(QString data)
+{
+    this->load(data);
+}
+
+void HitObject::load(QString s)
+{
+    QStringList d = s.split(",");
+    this->load(
+            d[0].toInt(),
+            d[1].toInt(),
+            d[2].toInt(),
+            d[3].toInt(),
+            d[4].toInt(),
+            d[d.size()-1]);
+}
+
+void HitObject::load(int x, int y, int time, int type, int hitSound, QString extras)
+{
     this->x = x;
     this->y = y;
     this->time = time;
@@ -9,24 +31,6 @@ HitObject::HitObject(int x, int y, int time, int type, int hitSound, QString ext
     this->hitSound = hitSound;
 
     this->setExtras(extras);
-}
-
-HitObject::HitObject(QString data) : HitObject(data.split(","))
-{
-
-}
-
-HitObject::HitObject(QStringList data)
-{
-    //These 5 settings are present whatever item type we have
-    this->x = data[0].toInt();
-    this->y = data[1].toInt();
-    this->time = data[2].toInt();
-    this->type = data[3].toInt();
-    this->hitSound = data[4].toInt();
-
-    //Extras are the last item from the set, whatever input type we have
-    this->setExtras(data[data.size()-1]);
 }
 
 void HitObject::setExtras(QString extras)

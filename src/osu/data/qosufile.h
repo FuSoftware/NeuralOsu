@@ -33,7 +33,12 @@ public:
 
     QString getData(QString category, QString variable, QString def = "");
 
+    bool hasData(QString category, QString variable);
+    QHash<QString, QString> getCategory(QString category);
     QString getMusicFile();
+    QString getArtist();
+    int getBeatmapID();
+    QString getTitle();
 
 private:
     QFileInfo fileInfo;

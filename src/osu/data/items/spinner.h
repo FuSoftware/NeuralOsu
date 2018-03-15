@@ -7,10 +7,8 @@ class Spinner : public HitObject
 {
 public:
     Spinner(QString data);
-    Spinner(QStringList data);
 
     static bool isSpinner(QString data);
-    static bool isSpinner(QStringList data);
 
 private:
     int endTime;

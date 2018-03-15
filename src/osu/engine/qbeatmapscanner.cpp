@@ -2,10 +2,10 @@
 
 QBeatmapScanner::QBeatmapScanner(QString folder, QObject *parent) : QBeatmapScanner(QDir(folder), parent)
 {
-
+    this->folder = QDir(folder);
 }
 
-QBeatmapScanner::QBeatmapScanner(QDir folder, QObject *parent )  : QObject(parent)
+QBeatmapScanner::QBeatmapScanner(QDir folder, QObject *parent)  : QObject(parent)
 {
     this->folder = folder;
 }
@@ -19,8 +19,16 @@ void QBeatmapScanner::scan()
 
     for(int i=0;i<folders.size();i++)
     {
-        QBeatmap *b = new QBeatmap(folders[i].absoluteFilePath());
-        if(b->isValid()) this->beatmaps.push_back(b);
+        try
+        {
+            QBeatmap *b = new QBeatmap(folders[i].absoluteFilePath());
+            if(b->isValid()) this->beatmaps.push_back(b);
+        }
+        catch(std::exception e)
+        {
+            std::cerr << "Error loading beatmap " << folders[i].absoluteFilePath().toStdString() << " : " << e.what() << std::endl;
+        }
+
     }
 }
 

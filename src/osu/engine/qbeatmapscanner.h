@@ -8,6 +8,8 @@
 #include "../data/qbeatmap.h"
 #include "../data/qosufile.h"
 
+#include <iostream>
+
 class QBeatmapScanner : public QObject
 {
     Q_OBJECT

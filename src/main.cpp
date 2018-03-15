@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);    
 
+    //OsuTests::testBeatmapFolder("E:/Program Files (x86)/osu!/Songs/1018 Caramell - Caramelldansen (Speedycake Remix)/");
     //OsuTests::testOsuFile("/home/fuguet/osu/Songs/21321 Hatsune Miku - Nisoku Hokou/Hatsune Miku - Nisoku Hokou (banvi) [Garven's Easy].osu");
     OsuTests::testBeatmapScanner();
 

@@ -24,10 +24,13 @@ void QOsuFile::load(QFileInfo info)
 
     if(this->fileInfo.exists())
     {
+
         QFile f(this->fileInfo.absoluteFilePath());
 
         if(f.exists())
         {
+            qDebug() << "Parsing " << fileInfo.baseName();
+
             //Read the file's content
             f.open(QIODevice::ReadOnly);
             QString text = f.readAll();
@@ -62,7 +65,8 @@ void QOsuFile::load(QFileInfo info)
                     //Starting at 1 to exclude the title
                     for(int j=1;j<lines.size();j++)
                     {
-                        this->timingPoints.push_back(new TimingPoint(lines[i]));
+                        TimingPoint *p = new TimingPoint(lines.at(j));
+                        this->timingPoints.push_back(p);
                     }
                 }
                 else if(title == "Colours")
@@ -77,6 +81,7 @@ void QOsuFile::load(QFileInfo info)
 
                     //Remove the last one if it's empty
                     if(lines[lines.size()-1] == "") lines.pop_back();
+                    if(lines[0] == "") lines.pop_front();
 
                     int non_parsed = 0;
 
@@ -97,7 +102,7 @@ void QOsuFile::load(QFileInfo info)
                         }
                     }
 
-                    qDebug() << "Parsed" << lines.size() -1 << "items";
+                    //qDebug() << "Parsed" << lines.size() -1 << "items";
                 }
                 else
                 {
@@ -115,6 +120,11 @@ void QOsuFile::load(QFileInfo info)
                     }
                 }
             }
+            qDebug() << "Parsed " << fileInfo.baseName();
+        }
+        else
+        {
+             qDebug() << "Error parsing" << fileInfo.absoluteFilePath() << "(doesn't exist)";
         }
     }
     else
@@ -137,7 +147,45 @@ QString QOsuFile::getData(QString category, QString variable, QString def)
 
 }
 
+bool QOsuFile::hasData(QString category, QString variable)
+{
+    if(this->metadata.contains(category))
+    {
+        return this->metadata[category].contains(variable);
+    }
+    else
+    {
+        return false;
+    }
+}
+
+QHash<QString,QString> QOsuFile::getCategory(QString category)
+{
+    if(this->metadata.contains(category))
+        return this->metadata[category];
+    else
+        return QHash<QString,QString>();
+}
+
 QString QOsuFile::getMusicFile()
 {
     return getData("General", "AudioFilename");
+}
+
+QString QOsuFile::getArtist()
+{
+    return this->getData("Metadata","Artist");
+}
+
+int QOsuFile::getBeatmapID()
+{
+    if(this->hasData("Metadata", "BeatmapSetID"))
+        return this->getData("Metadata","BeatmapSetID").toInt();
+    else
+        return -1;
+}
+
+QString QOsuFile::getTitle()
+{
+    return this->getData("Metadata","Title");
 }
